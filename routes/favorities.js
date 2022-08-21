@@ -7,7 +7,8 @@ const db = require("../model/helper");
 /* GET activities listing. */
 router.get('/', async function(req, res, next) {
   try{
-    const results = await db("SELECT * FROM favorities;");
+    const results
+     = await db("SELECT * FROM favorities;");
     res.send(results.data);
   }
   catch(err){
@@ -42,18 +43,6 @@ router.delete('/:id', favoriteActivityIdGuard,  async function(req, res, next) {
        res.status(500).send(err);
   }
 });
-
-//GET list of fav activities filtered by user - it can be an added functionality in the admin
-// router.get('/favorites', async function(req, res, next) {
-//   const {user_id} = req.body
-//   try{
-//     const results = await db(`SELECT * FROM favorites WHERE user_id = "${user_id}";`);
-//     res.send(results.data);
-//   }
-//   catch(err){
-//        res.status(500).send(err);
-//   }
-// });
 
 
 module.exports = router;

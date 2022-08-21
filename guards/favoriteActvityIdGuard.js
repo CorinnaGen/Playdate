@@ -6,7 +6,7 @@ async function favoriteActivityIdGuard(req, res, next) {
     const { id } = req.params;
 
     const results = await db(`SELECT * FROM favorities WHERE id="${id}";`); 
-    if (!results.data.length) {
+    if (!results.data) {
       return res.status(404).send({ message: "There is no activity with this id" }); 
     }
     next(); 
